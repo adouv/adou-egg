@@ -8,7 +8,7 @@ export default () => {
       port: 3306,//端口号
       user: 'root',//用户名
       password: '12345678',//密码
-      database: 'aodu'//数据库名
+      database: 'adou'//数据库名
     },
     app: true,      // 是否加载到app上
     agent: false    // 是否加载到agent上
