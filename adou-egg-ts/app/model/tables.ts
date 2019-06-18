@@ -1,10 +1,10 @@
-import { adAccount } from './adAccountModel';
+import { adAccountModel } from './adAccountModel';
 /**
- * 表集合
+ * 数据表集合
  */
 export interface tables {
     /**
      * 账户表
      */
-    ad_account: adAccount;
+    ad_account: adAccountModel;
 }

@@ -1,7 +1,7 @@
 /**
  * 账户表
  */
-export interface adAccount {
+export interface adAccountModel {
     /**
      * 编号 自增
      */

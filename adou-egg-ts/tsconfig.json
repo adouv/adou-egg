@@ -23,6 +23,7 @@
     "importHelpers": true
   },
   "exclude": [
+    "app/model",
     "app/public",
     "app/views",
     "node_modules*"
