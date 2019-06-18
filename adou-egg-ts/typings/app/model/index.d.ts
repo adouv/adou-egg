@@ -2,12 +2,12 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportAdAccountDto from '../../../app/model/adAccount.dto';
-import ExportTablesDto from '../../../app/model/tables.dto';
+import ExportAdAccountModel from '../../../app/model/adAccountModel';
+import ExportTables from '../../../app/model/tables';
 
 declare module 'egg' {
   interface IModel {
-    AdAccountDto: ReturnType<typeof ExportAdAccountDto>;
-    TablesDto: ReturnType<typeof ExportTablesDto>;
+    AdAccountModel: ReturnType<typeof ExportAdAccountModel>;
+    Tables: ReturnType<typeof ExportTables>;
   }
 }

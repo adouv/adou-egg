@@ -1,4 +1,4 @@
-import { adAccount } from './adAccount.dto';
+import { adAccount } from './adAccountModel';
 /**
  * 表集合
  */
