@@ -1,4 +1,4 @@
-import { adAccountModel } from './../model/adAccountModel';
+import { adAccountModel } from '../model/adAccountModel';
 import { Service } from 'egg';
 /**
  * 账户服务类
@@ -15,35 +15,13 @@ export default class AdAccountService extends Service {
     table_name: String = "ad_account";
     /**
      * 
-     * @param  {*} [where] 
-     * @return 
-     * @memberof AdAccountService
-     */
-    public async get(where?: adAccountModel): Promise<any> {
-        const { app } = this;
-        const result: any = await app.mysql.get(`${this.table_name}`, where);
-        return result;
-    }
-    /**
-     * 
      * @param  {adAccountModel} [where] 
      * @return Promise<any> 
      * @memberof AdAccountService
      */
-    public async select(where?: adAccountModel): Promise<any> {
+    public async insert(dto: adAccountModel): Promise<any> {
         const { app } = this;
-        const result: any = await app.mysql.select(`${this.table_name}`, where);
-        return result;
-    }
-    /**
-     * 
-     * @param  {adAccountModel} [where] 
-     * @return Promise<any> 
-     * @memberof AdAccountService
-     */
-    public async update(where?: adAccountModel): Promise<any> {
-        const { app } = this;
-        const result: any = await app.mysql.update(`${this.table_name}`, where);
+        const result: any = await app.mysql.insert(`${this.table_name}`, dto);
         return result;
     }
     /**
@@ -63,9 +41,20 @@ export default class AdAccountService extends Service {
      * @return Promise<any> 
      * @memberof AdAccountService
      */
-    public async insert(where?: adAccountModel): Promise<any> {
+    public async update(where?: adAccountModel): Promise<any> {
         const { app } = this;
-        const result: any = await app.mysql.insert(`${this.table_name}`, where);
+        const result: any = await app.mysql.update(`${this.table_name}`, where);
+        return result;
+    }
+    /**
+     * 
+     * @param  {adAccountModel} [where] 
+     * @return Promise<any> 
+     * @memberof AdAccountService
+     */
+    public async select(where?: adAccountModel): Promise<any> {
+        const { app } = this;
+        const result: any = await app.mysql.select(`${this.table_name}`, where);
         return result;
     }
     /**
@@ -77,6 +66,17 @@ export default class AdAccountService extends Service {
     public async query(where?: adAccountModel): Promise<any> {
         const { app } = this;
         const result: any = await app.mysql.query(`${this.table_name}`, where);
+        return result;
+    }
+    /**
+     * 
+     * @param  {adAccountModel} [where] 
+     * @return Promise<any> 
+     * @memberof AdAccountService
+     */
+    public async get(where?: adAccountModel): Promise<any> {
+        const { app } = this;
+        const result: any = await app.mysql.get(`${this.table_name}`, where);
         return result;
     }
 }

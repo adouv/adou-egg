@@ -15,19 +15,37 @@ export interface adAccountModel {
      */
     Account?: String;
     /**
+     * 密码
+     */
+    Password?: String;
+    /**
+     * 邮箱
+     */
+    Email?: String;
+    /**
+     * 手机号
+     */
+    Phone?: String;
+
+    /**
      * 地址
      */
     Url?: String;
+
     /**
      * 描述
      */
     Descript?: String;
     /**
-     * 密码
+     * 内容
      */
-    Password?: String;
+    Content?: String;
     /**
      * 创建时间
      */
     CreateDataTime?: String;
+    /**
+     * 更新时间
+     */
+    UpdateDateTime?: String;
 }

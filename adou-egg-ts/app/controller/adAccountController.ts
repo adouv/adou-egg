@@ -1,5 +1,6 @@
 
 import { Controller } from 'egg';
+import { adAccountModel } from '../model/adAccountModel';
 /**
  * 
  * @export
@@ -7,19 +8,65 @@ import { Controller } from 'egg';
  * @extends Controller
  */
 export default class AdAccountController extends Controller {
-    public async find() {
-        let { ctx } = this;
-        // let dto: any = app.model.adAccountModel;
-        // dto.Id = 0;
-        ctx.body = '1';
-    }
-    public async update() {
-        this.ctx.body = 'update';
+    public async insert() {
+        // let { ctx } = this;
+        // ctx.body = "insert";
+        let { ctx, service } = this;
+        try {
+            let dto: adAccountModel = {
+                Title: '我是标题',
+                Account: '我是账号',
+                Password: '我是密码',
+                Email: '我是邮箱',
+                Phone: '我是手机号',
+                Url: '我是链接地址',
+                Descript: '我是描述',
+                Content: '我是内容',
+                UpdateDateTime: new Date().toLocaleString().replace(' PM', '')
+            };
+
+            let result: any = await service.adAccountService.insert(dto);
+            ctx.body = `insert result:${JSON.stringify(result)}`;
+        } catch (error) {
+            ctx.logger.error(`page controller error :${error}`);
+        }
     }
     public async delete() {
-        this.ctx.body = 'delete';
+        let { ctx, service } = this;
+        try {
+            let result: any = await service.adAccountService.delete();
+            ctx.body = `delete result:${JSON.stringify(result)}`;
+        } catch (error) {
+            ctx.logger.error(`page controller error :${error}`);
+        }
     }
-    public async insert() {
-        this.ctx.body = 'insert';
+    public async update() {
+        let { ctx, service } = this;
+        try {
+            let result: any = await service.adAccountService.update();
+            ctx.body = `delete update:${JSON.stringify(result)}`;
+        } catch (error) {
+            ctx.logger.error(`page controller error :${error}`);
+        }
     }
+    public async select() {
+        let { ctx, service } = this;
+        try {
+            let result: any = await service.adAccountService.select();
+            ctx.body = `delete select:${JSON.stringify(result)}`;
+        } catch (error) {
+            ctx.logger.error(`page controller error :${error}`);
+        }
+    }
+    public async get() {
+        let { ctx, service } = this;
+        try {
+            let result: any = await service.adAccountService.get();
+            ctx.body = `get result:${JSON.stringify(result)}`;
+        } catch (error) {
+            ctx.logger.error(`page controller error :${error}`);
+        }
+    }
+
+
 }

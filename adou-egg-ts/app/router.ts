@@ -13,8 +13,8 @@ export default (app: Application) => {
       controller: controller.home.index
     },
     {
-      path: '/adAccount/find',
-      controller: controller.adAccountController.find
+      path: '/adAccount/insert',
+      controller: controller.adAccountController.insert
     },
     {
       path: '/adAccount/delete',
@@ -25,8 +25,8 @@ export default (app: Application) => {
       controller: controller.adAccountController.update
     },
     {
-      path: '/adAccount/insert',
-      controller: controller.adAccountController.insert
+      path: '/adAccount/get',
+      controller: controller.adAccountController.get
     }
   ];
 

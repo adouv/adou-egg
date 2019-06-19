@@ -1,26 +1,15 @@
-import { literals } from './literals'
+import { literals } from './literals';
+import { Insert } from './insert.mysql';
 /**
  * mysql工具类
  */
 export interface mysql {
     /**
-     * 查询一条记录
+     * 插入数据
      * @param tableName 表名
-     * @param obj 查询条件
+     * @param where 插入条件
      */
-    get(tableName?: String, where?: any): any;
-    /**
-     * 查询数据
-     * @param tableName 表明
-     * @param where 查询条件
-     */
-    select(tableName?: String, where?: any): any;
-    /**
-     * 更新数据
-     * @param tableName 表名
-     * @param where 更新条件
-     */
-    update(tableName?: String, where?: any): any;
+    insert(tableName?: String, where?: any): Promise<Insert>;
     /**
      * 删除数据
      * @param tableName 表名
@@ -28,11 +17,17 @@ export interface mysql {
      */
     delete(tableName?: String, where?: any): any;
     /**
-     * 插入数据
+     * 更新数据
      * @param tableName 表名
-     * @param where 插入条件
+     * @param where 更新条件
      */
-    insert(tableName?: String, where?: any): any;
+    update(tableName?: String, where?: any): any;
+    /**
+    * 查询数据
+    * @param tableName 表明
+    * @param where 查询条件
+    */
+    select(tableName?: String, where?: any): any;
     /**
      * 执行sql语句
      * 注意！！我们及其不建议开发者拼接sql语句，这样很容易引起sql注入！！
@@ -41,6 +36,12 @@ export interface mysql {
      * @param where 执行条件
      */
     query(tableName?: String, where?: any): any;
+    /**
+     * 查询一条记录
+     * @param tableName 表名
+     * @param obj 查询条件
+     */
+    get(tableName?: String, where?: any): any;
     /**
      * 手动控制事务
      * 优点：beginTransaction, commit 或 rollback 都由开发者来完全控制，可以做到非常细粒度的控制。

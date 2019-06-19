@@ -3,11 +3,11 @@
 
 import 'egg';
 import ExportAdAccountModel from '../../../app/model/adAccountModel';
-import ExportTables from '../../../app/model/tables';
+import ExportRouterModel from '../../../app/model/routerModel';
 
 declare module 'egg' {
   interface IModel {
     AdAccountModel: ReturnType<typeof ExportAdAccountModel>;
-    Tables: ReturnType<typeof ExportTables>;
+    RouterModel: ReturnType<typeof ExportRouterModel>;
   }
 }
