@@ -1,12 +1,12 @@
 import BaseService from './baseService';
-import { RequestUserModel } from '../model/request/requestUserModel';
+import { RequestAccountModel } from '../model/request/requestAccountModel';
 /**
  * 
  * @export
  * @class AdUserService
  * @extends BaseService<RequestUserModel>
  */
-export default class AdUserService extends BaseService<RequestUserModel>
+export default class AdUserService extends BaseService<RequestAccountModel>
 {
     /**
      * 执行具体业务逻辑
@@ -15,6 +15,8 @@ export default class AdUserService extends BaseService<RequestUserModel>
      * @memberof AdUserService
      */
     protected async ExecuteMethod(): Promise<void> {
-        
+        let { app } = this;
+        const result: any = await app.mysql.insert(`ad_account`, this.Parameter);
+        this.Result.Data = JSON.stringify(result);
     }
 }

@@ -6,7 +6,7 @@ import { RequestModel } from '../model/requestModel';
  * 基类
  */
 export default class BaseService<P extends RequestBaseModel> extends Service {
- 
+
     /**
      * 请求参数
      * @type P
@@ -46,10 +46,13 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @return Promise<ResponseMessageModel> 
      * @memberof BaseService
      */
-    protected async Execute(): Promise<ResponseMessageModel> {
-        let dto: ResponseMessageModel = {};
-        await this.ExecuteMethod();
-        return await dto;
+    public async Execute(): Promise<ResponseMessageModel> {
+        try {
+            await this.ExecuteMethod();
+        } catch (error) {
+            this.ctx.logger.error(`api base error : ${error}`);
+        }
+        return await this.Result;
     }
 
 }

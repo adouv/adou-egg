@@ -9,7 +9,7 @@ export default class HomeController extends Controller {
     // let result: any = await service.adAccountService.getList();
 
     // ctx.body = `账户列表：${JSON.stringify(result)}`;
-
+    
     let { ctx } = this;
     let dto: adAccountModel = {};
     dto.Id = 0;
