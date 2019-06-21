@@ -12,19 +12,19 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @type P
      * @memberof BaseService
      */
-    public Parameter: P;
+    protected Parameter: P;
     /**
      * 响应实体
      * @type ResponseMessageModel
      * @memberof BaseService
      */
-    public Result: ResponseMessageModel;
+    protected Result: ResponseMessageModel;
     /**
      * 请求实体
      * @type RequestModel
      * @memberof BaseService
      */
-    public model: RequestModel;
+    protected model: RequestModel;
     /**
      * 
      * @protected
