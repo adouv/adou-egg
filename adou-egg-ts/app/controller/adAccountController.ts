@@ -1,6 +1,6 @@
 
 import { Controller } from 'egg';
-import { adAccountModel } from '../model/adAccountModel';
+import { RequestAccountModel } from '../model/account/request/requestAccountModel';
 /**
  * 
  * @export
@@ -13,7 +13,7 @@ export default class AdAccountController extends Controller {
         // ctx.body = "insert";
         let { ctx, service } = this;
         try {
-            let dto: adAccountModel = {
+            let dto: RequestAccountModel = {
                 Title: '我是标题',
                 Account: '我是账号',
                 Password: '我是密码',

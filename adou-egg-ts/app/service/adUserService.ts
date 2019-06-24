@@ -1,5 +1,5 @@
 import BaseService from './baseService';
-import { RequestAccountModel } from '../model/request/requestAccountModel';
+import { RequestAccountModel } from '../model/account/request/requestAccountModel';
 /**
  * 
  * @export

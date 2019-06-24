@@ -1,4 +1,4 @@
-import { RequestBaseModel } from '../requestBaseModel';
+import { RequestBaseModel } from '../../requestBaseModel';
 /**
  * 账户表
  */

@@ -3,7 +3,11 @@ import { RequestBaseModel } from '../model/requestBaseModel';
 import { ResponseMessageModel } from '../model/responseMessageModel';
 import { RequestModel } from '../model/requestModel';
 /**
- * 基类
+ * 服务基类
+ * @export
+ * @class BaseService
+ * @extends Service
+ * @template P 
  */
 export default class BaseService<P extends RequestBaseModel> extends Service {
 
@@ -26,14 +30,14 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      */
     protected model: RequestModel;
     /**
-     * 
+     * 业务实现方法
      * @protected
      * @return Promise<any> 
      * @memberof BaseService
      */
     protected async ExecuteMethod(): Promise<void> { };
     /**
-     * 
+     * 验证
      * @return Promise<any> 
      * @memberof BaseService
      */
@@ -42,16 +46,34 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
         return await '123';
     }
     /**
-     * 执行具体业务逻辑
+     * 执行
      * @return Promise<ResponseMessageModel> 
      * @memberof BaseService
      */
-    public async Execute(): Promise<ResponseMessageModel> {
+    public async Execute(dto: RequestModel): Promise<ResponseMessageModel> {
         try {
+            this.model = dto;
+            //执行验证
+            if (this.model) {
+                await this.Validate();
+            }
+
             await this.ExecuteMethod();
         } catch (error) {
-            this.ctx.logger.error(`api base error : ${error}`);
+            /** 
+             * 异常处理
+            */
+            this.Result.Data = "";
+            this.Result.ErrorCode = "9999";
+            this.Result.Message = error;
+            this.Result.IsSuccess = false;
+
+            let stringBuilder: String = `Parameter:${JSON.stringify(this.Parameter)};`;
+            stringBuilder += `Exception:${error}`;
+
+            this.ctx.logger.error(`api base error : ${stringBuilder}`);
         }
+
         return await this.Result;
     }
 
