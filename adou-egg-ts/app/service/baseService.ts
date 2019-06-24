@@ -3,7 +3,11 @@ import { RequestBaseModel } from '../model/requestBaseModel';
 import { ResponseMessageModel } from '../model/responseMessageModel';
 import { RequestModel } from '../model/requestModel';
 /**
- * 基类
+ * 服务基类
+ * @export
+ * @class BaseService
+ * @extends Service
+ * @template P 
  */
 export default class BaseService<P extends RequestBaseModel> extends Service {
 
