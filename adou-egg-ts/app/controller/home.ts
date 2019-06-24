@@ -1,6 +1,6 @@
 
 import { Controller } from 'egg';
-import { adAccountModel } from '../model/adAccountModel';
+import { RequestAccountModel } from '../model/account/request/requestAccountModel';
 
 export default class HomeController extends Controller {
   public async index() {
@@ -11,7 +11,7 @@ export default class HomeController extends Controller {
     // ctx.body = `账户列表：${JSON.stringify(result)}`;
     
     let { ctx } = this;
-    let dto: adAccountModel = {};
+    let dto: RequestAccountModel = {};
     dto.Id = 0;
     ctx.body = JSON.stringify(dto);
   }
