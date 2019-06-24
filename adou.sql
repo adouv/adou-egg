@@ -14,7 +14,7 @@
  Date: 24/06/2019 13:36:01
 */
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -23,18 +23,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `ad_account`;
 CREATE TABLE `ad_account`  (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Account` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Descript` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Descript` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `CreateDateTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   `UpdateDateTime` datetime(0) NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ad_account
@@ -65,16 +65,16 @@ INSERT INTO `ad_account` VALUES (19, '我是标题', '我是账号', '我是密�
 DROP TABLE IF EXISTS `ad_user`;
 CREATE TABLE `ad_user`  (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `UserName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `IsDelete` bit(1) NOT NULL,
   `IsAdministrator` bit(1) NOT NULL,
-  `Gender` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Gender` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `CreateDataTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   `UpdateDataTime` datetime(0) NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

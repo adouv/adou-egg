@@ -1,0 +1,38 @@
+/**
+ * mysql 更新数据返回结果实体
+ */
+export interface update
+{
+    /**
+     * 
+     */
+    fieldCount:Number;
+    /**
+     * 
+     */
+    affectedRows:Number;
+    /**
+     * 
+     */
+    insertId:Number;
+    /**
+     * 
+     */
+    serverStatus:Number;
+    /**
+     * 
+     */
+    warningCount:Number;
+    /**
+     * 
+     */
+    message:String;
+    /**
+     * 
+     */
+    protocol41:Boolean;
+    /**
+     * 
+     */
+    changedRows:Number;
+}

@@ -41,9 +41,14 @@ export default class AdAccountService extends Service {
      * @return Promise<any> 
      * @memberof AdAccountService
      */
-    public async update(where?: RequestAccountModel): Promise<any> {
+    public async update(where: RequestAccountModel): Promise<any> {
         const { app } = this;
-        const result: any = await app.mysql.update(`${this.table_name}`, where);
+        console.log(where);
+        const result: any = await app.mysql.update(`${this.table_name}`, {Title:'123'},{
+            where:{
+                Id:5
+            }
+        });
         return result;
     }
     /**

@@ -1,5 +1,6 @@
 import { literals } from './literals';
 import { Insert } from './insert.mysql';
+import { update } from './update.mysql';
 /**
  * mysql工具类
  */
@@ -21,7 +22,7 @@ export interface mysql {
      * @param tableName 表名
      * @param where 更新条件
      */
-    update(tableName?: String, where?: any): any;
+    update(tableName?: String, dto?: any, where?: any): Promise<update>;
     /**
     * 查询数据
     * @param tableName 表明

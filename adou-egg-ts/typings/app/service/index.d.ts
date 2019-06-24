@@ -2,26 +2,28 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportIBaseService from '../../../app/service/IBaseService';
 import ExportAdAccountService from '../../../app/service/adAccountService';
 import ExportAdUserService from '../../../app/service/adUserService';
 import ExportBaseService from '../../../app/service/baseService';
-<<<<<<< HEAD
-=======
-import ExportAccountAdAccountService from '../../../app/service/account/adAccountService';
->>>>>>> 1ddacc7232add5ccea10aafe760a82adf5e15bb9
+import ExportAccountAdDeleteService from '../../../app/service/account/adDeleteService';
+import ExportAccountAdGetListService from '../../../app/service/account/adGetListService';
+import ExportAccountAdInsertService from '../../../app/service/account/adInsertService';
+import ExportAccountAdUpdateService from '../../../app/service/account/adUpdateService';
+import ExportUserAdUserService from '../../../app/service/user/adUserService';
 
 declare module 'egg' {
   interface IService {
-    iBaseService: ExportIBaseService;
     adAccountService: ExportAdAccountService;
     adUserService: ExportAdUserService;
     baseService: ExportBaseService;
-<<<<<<< HEAD
-=======
     account: {
-      adAccountService: ExportAccountAdAccountService;
+      adDeleteService: ExportAccountAdDeleteService;
+      adGetListService: ExportAccountAdGetListService;
+      adInsertService: ExportAccountAdInsertService;
+      adUpdateService: ExportAccountAdUpdateService;
     }
->>>>>>> 1ddacc7232add5ccea10aafe760a82adf5e15bb9
+    user: {
+      adUserService: ExportUserAdUserService;
+    }
   }
 }
