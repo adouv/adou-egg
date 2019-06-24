@@ -26,7 +26,7 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      */
     protected model: RequestModel;
     /**
-     * 
+     * 执行业务逻辑
      * @protected
      * @return Promise<any> 
      * @memberof BaseService
