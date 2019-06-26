@@ -1,3 +1,4 @@
+
 import { Service } from 'egg';
 import { RequestBaseModel } from '../model/requestBaseModel';
 import { ResponseMessageModel } from '../model/responseMessageModel';
