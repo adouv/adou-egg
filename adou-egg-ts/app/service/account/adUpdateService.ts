@@ -1,6 +1,6 @@
 import BaseService from '../baseService';
 import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
-import { TableEnum } from '../../enum/table.enum';
+import { tableEnum } from '../../enum/table.enum';
 /**
  * 更新账户服务
  * @export
@@ -22,7 +22,7 @@ export default class AdUpdateService extends BaseService<RequestAccountModel>
             Id: this.Parameter.Id
         };
 
-        let result: any = await app.mysql.update(TableEnum.adAccount, this.Parameter, {
+        let result: any = await app.mysql.update(tableEnum.adAccount, this.Parameter, {
             where: where
         });
 

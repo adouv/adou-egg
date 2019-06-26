@@ -1,6 +1,6 @@
 import BaseService from '../baseService';
 import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
-import { TableEnum } from '../../enum/table.enum';
+import { tableEnum } from '../../enum/table.enum';
 /**
  * 删除账户服务
  * @export
@@ -22,7 +22,7 @@ export default class AdDeleteService extends BaseService<RequestAccountModel>
             Id: this.Parameter.Id
         };
 
-        let result: any = await app.mysql.delete(TableEnum.adAccount, where);
+        let result: any = await app.mysql.delete(tableEnum.adAccount, where);
         this.Result.Data = result;
         this.Result.IsSuccess = true;
         this.Result.ErrorCode = "200";

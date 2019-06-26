@@ -1,6 +1,6 @@
 import BaseService from '../baseService';
 import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
-import { TableEnum } from '../../enum/table.enum';
+import { tableEnum } from '../../enum/table.enum';
 /**
  * 获取账户列表服务
  * @export
@@ -18,7 +18,7 @@ export default class AdGetListService extends BaseService<RequestAccountModel>
     protected async ExecuteMethod(): Promise<void> {
         let { app } = this;
         
-        let result: any = await app.mysql.select(TableEnum.adAccount);
+        let result: any = await app.mysql.select(tableEnum.adAccount);
 
         this.Result.Data = result;
         this.Result.IsSuccess = true;

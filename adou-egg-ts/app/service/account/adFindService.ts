@@ -1,6 +1,6 @@
 import BaseService from '../baseService';
 import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
-import { TableEnum } from '../../enum/table.enum';
+import { tableEnum } from '../../enum/table.enum';
 /**
  * 根据条件获取账户列表服务
  * @export
@@ -22,7 +22,7 @@ export default class AdFindService extends BaseService<RequestAccountModel>
             Id: this.Parameter.Id
         };
 
-        let result: any = await app.mysql.get(TableEnum.adAccount, { where: where });
+        let result: any = await app.mysql.get(tableEnum.adAccount, { where: where });
 
         this.Result.Data = result;
         this.Result.IsSuccess = true;

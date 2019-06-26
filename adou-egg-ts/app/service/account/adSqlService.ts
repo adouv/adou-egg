@@ -1,6 +1,6 @@
 import BaseService from '../baseService';
 import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
-import { TableEnum } from '../../enum/table.enum';
+import { tableEnum } from '../../enum/table.enum';
 /**
  * 通过SQL语句操作数据库
  * @export
@@ -18,7 +18,7 @@ export default class AdSqlService extends BaseService<RequestAccountModel>
     protected async ExecuteMethod(): Promise<void> {
         let { app } = this;
 
-        let result: any = await app.mysql.query(`select * from ${TableEnum.adAccount} where Id=?`, [this.Parameter.Id]);
+        let result: any = await app.mysql.query(`select * from ${tableEnum.adAccount} where Id=?`, [this.Parameter.Id]);
 
         this.Result.Data = result;
         this.Result.IsSuccess = true;

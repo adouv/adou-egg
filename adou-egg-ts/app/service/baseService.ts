@@ -11,6 +11,13 @@ import { RequestModel } from '../model/requestModel';
  * @template P 
  */
 export default class BaseService<P extends RequestBaseModel> extends Service {
+    /**
+     * 数据库表集合
+     * @protected
+     * @type any
+     * @memberof BaseService
+     */
+    protected table: any;
 
     /**
      * 请求参数
@@ -19,11 +26,17 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      */
     protected Parameter: P;
     /**
-     * 响应实体
+     * 响应实体，并初始化
      * @type ResponseMessageModel
      * @memberof BaseService
      */
-    protected Result: ResponseMessageModel;
+    protected Result: ResponseMessageModel = {
+        Data: "",
+        IsSuccess: false,
+        ErrorCode: "",
+        Message: "",
+        Status: 200
+    };
     /**
      * 请求实体
      * @type RequestModel
@@ -52,14 +65,7 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @memberof BaseService
      */
     public async Execute(dto: RequestModel): Promise<ResponseMessageModel> {
-        this.Result = {
-            Data: "",
-            IsSuccess: false,
-            ErrorCode: "",
-            Message: "",
-            Status: 0
-        };
-
+        
         try {
             this.model = dto;
 
