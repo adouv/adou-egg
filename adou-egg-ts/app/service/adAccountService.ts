@@ -30,7 +30,7 @@ export default class AdAccountService extends Service {
      * @return Promise<any> 
      * @memberof AdAccountService
      */
-    public async delete(where?: RequestAccountModel): Promise<any> {
+    public async delete(where: RequestAccountModel): Promise<any> {
         const { app } = this;
         const result: any = await app.mysql.delete(`${this.table_name}`, where);
         return result;
@@ -41,13 +41,11 @@ export default class AdAccountService extends Service {
      * @return Promise<any> 
      * @memberof AdAccountService
      */
-    public async update(where: RequestAccountModel): Promise<any> {
+    public async update(dto: RequestAccountModel, where: RequestAccountModel): Promise<any> {
         const { app } = this;
         console.log(where);
-        const result: any = await app.mysql.update(`${this.table_name}`, {Title:'123'},{
-            where:{
-                Id:5
-            }
+        const result: any = await app.mysql.update(`${this.table_name}`, dto, {
+            where: where
         });
         return result;
     }
@@ -59,18 +57,19 @@ export default class AdAccountService extends Service {
      */
     public async select(where?: RequestAccountModel): Promise<any> {
         const { app } = this;
-        const result: any = await app.mysql.select(`${this.table_name}`, where);
+        const result: any = await app.mysql.select(`${this.table_name}`, { where: where });
         return result;
     }
     /**
-     * 
-     * @param  {adAccountModel} [where] 
+     * 直接执行SQL语句
+     * @param  {string} sql 语句
+     * @param  {any[]} values 值
      * @return Promise<any> 
      * @memberof AdAccountService
      */
-    public async query(where?: RequestAccountModel): Promise<any> {
+    public async query(sql: string, values: any[]): Promise<any> {
         const { app } = this;
-        const result: any = await app.mysql.query(`${this.table_name}`, where);
+        const result: any = await app.mysql.query(sql, values);
         return result;
     }
     /**

@@ -1,6 +1,7 @@
 import { literals } from './literals';
 import { Insert } from './insert.mysql';
 import { update } from './update.mysql';
+import { Delete } from './delete.mysql';
 /**
  * mysql工具类
  */
@@ -16,7 +17,7 @@ export interface mysql {
      * @param tableName 表名
      * @param where 删除条件
      */
-    delete(tableName?: String, where?: any): any;
+    delete(tableName?: String, where?: any): Promise<Delete>;
     /**
      * 更新数据
      * @param tableName 表名
@@ -28,7 +29,7 @@ export interface mysql {
     * @param tableName 表明
     * @param where 查询条件
     */
-    select(tableName?: String, where?: any): any;
+    select(tableName?: String, where?: any): Promise<any>;
     /**
      * 执行sql语句
      * 注意！！我们及其不建议开发者拼接sql语句，这样很容易引起sql注入！！
@@ -36,13 +37,13 @@ export interface mysql {
      * @param tableName 表名
      * @param where 执行条件
      */
-    query(tableName?: String, where?: any): any;
+    query(tableName?: String, where?: any): Promise<any>;
     /**
      * 查询一条记录
      * @param tableName 表名
      * @param obj 查询条件
      */
-    get(tableName?: String, where?: any): any;
+    get(tableName?: String, where?: any): Promise<any>;
     /**
      * 手动控制事务
      * 优点：beginTransaction, commit 或 rollback 都由开发者来完全控制，可以做到非常细粒度的控制。

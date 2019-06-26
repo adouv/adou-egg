@@ -27,6 +27,14 @@ export default (app: Application) => {
     {
       path: '/adAccount/get',
       controller: controller.adAccountController.get
+    },
+    {
+      path: '/adAccount/select',
+      controller: controller.adAccountController.select
+    },
+    {
+      path: '/adAccount/query',
+      controller: controller.adAccountController.query
     }
   ];
 

@@ -1,6 +1,7 @@
 
 import { Controller } from 'egg';
 import { RequestAccountModel } from '../model/account/request/requestAccountModel';
+import { router } from '../decorator/router.decorator';
 /**
  * 
  * @export
@@ -8,9 +9,8 @@ import { RequestAccountModel } from '../model/account/request/requestAccountMode
  * @extends Controller
  */
 export default class AdAccountController extends Controller {
+    @router('api/adAccount/insert')
     public async insert() {
-        // let { ctx } = this;
-        // ctx.body = "insert";
         let { ctx, service } = this;
         try {
             let dto: RequestAccountModel = {
@@ -35,7 +35,7 @@ export default class AdAccountController extends Controller {
     public async delete() {
         let { ctx, service } = this;
         try {
-            let result: any = await service.adAccountService.delete();
+            let result: any = await service.adAccountService.delete({ Id: 2 });
             ctx.logger.info(`delete result:${JSON.stringify(result)}`);
             ctx.body = `delete result:${JSON.stringify(result)}`;
         } catch (error) {
@@ -58,7 +58,7 @@ export default class AdAccountController extends Controller {
                 UpdateDateTime: new Date().toLocaleString().replace(' PM', '')
             };
             ctx.logger.info(`dto:${JSON.stringify(dto)}`);
-            let result: any = await service.adAccountService.update(dto);
+            let result: any = await service.adAccountService.update(dto, { Id: dto.Id });
             ctx.logger.info(`update result:${JSON.stringify(result)}`);
             ctx.body = `delete update:${JSON.stringify(result)}`;
         } catch (error) {
@@ -78,7 +78,7 @@ export default class AdAccountController extends Controller {
     public async get() {
         let { ctx, service } = this;
         try {
-            let result: any = await service.adAccountService.get();
+            let result: any = await service.adAccountService.get({ Id: 3 });
             ctx.logger.info(`get result:${JSON.stringify(result)}`);
             ctx.body = `get result:${JSON.stringify(result)}`;
         } catch (error) {
@@ -86,5 +86,15 @@ export default class AdAccountController extends Controller {
         }
     }
 
-
+    public async query() {
+        let { ctx, service } = this;
+        try {
+            let sql: string = "select * from ad_account where Id=?";
+            let result: any = await service.adAccountService.query(sql, [4]);
+            ctx.logger.info(`query result:${JSON.stringify(result)}`);
+            ctx.body = `query result:${JSON.stringify(result)} `;
+        } catch (error) {
+            ctx.logger.error(`page controller error :${error}`);
+        }
+    }
 }
