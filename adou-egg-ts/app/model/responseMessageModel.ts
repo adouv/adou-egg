@@ -5,22 +5,22 @@ export interface ResponseMessageModel {
     /**
      * 响应数据
      */
-    Data?: Object;
+    Data: any;
     /**
      * 消息
      */
-    Message?: String;
+    Message: string;
     /**
      * 错误码
      */
-    ErrorCode?: String;
+    ErrorCode: string;
     /**
      * 是否成功
      */
-    IsSuccess?: Boolean;
+    IsSuccess: boolean;
     /**
      * 状态码
      * 200成功
      */
-    Status?: Number;
+    Status: number;
 }

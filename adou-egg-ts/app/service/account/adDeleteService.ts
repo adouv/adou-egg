@@ -1,7 +1,13 @@
 import BaseService from '../baseService';
-import { RequestUserModel } from '../../model/user/request/requestUserModel';
-
-export default class AdGetListService extends BaseService<RequestUserModel>
+import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
+import { TableEnum } from '../../enum/table.enum';
+/**
+ * 删除账户服务
+ * @export
+ * @class AdDeleteService
+ * @extends BaseService<RequestAccountModel>
+ */
+export default class AdDeleteService extends BaseService<RequestAccountModel>
 {
     /**
      * 执行具体业务逻辑
@@ -10,7 +16,13 @@ export default class AdGetListService extends BaseService<RequestUserModel>
      * @memberof AdGetListService
      */
     protected async ExecuteMethod(): Promise<void> {
-        let result: any = await this.app.mysql.select('');
+        let { app } = this;
+
+        let where: RequestAccountModel = {
+            Id: this.Parameter.Id
+        };
+
+        let result: any = await app.mysql.delete(TableEnum.adAccount, where);
         this.Result.Data = result;
         this.Result.IsSuccess = true;
         this.Result.ErrorCode = "200";

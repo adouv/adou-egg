@@ -41,9 +41,9 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @return Promise<any> 
      * @memberof BaseService
      */
-    protected async Validate(): Promise<any> {
-
-        return await '123';
+    protected async Validate(): Promise<void> {
+        console.log('base model:', this.model.Data);
+        this.Parameter = JSON.parse(this.model.Data);
     }
     /**
      * 执行
@@ -51,9 +51,17 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @memberof BaseService
      */
     public async Execute(dto: RequestModel): Promise<ResponseMessageModel> {
+        this.Result = {
+            Data: "",
+            IsSuccess: false,
+            ErrorCode: "",
+            Message: "",
+            Status: 0
+        };
+
         try {
             this.model = dto;
-            //执行验证
+
             if (this.model) {
                 await this.Validate();
             }

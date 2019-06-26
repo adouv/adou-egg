@@ -2,12 +2,12 @@ import BaseService from '../baseService';
 import { RequestAccountModel } from '../../model/account/request/requestAccountModel';
 import { TableEnum } from '../../enum/table.enum';
 /**
- * 获取账户列表服务
+ * 通过SQL语句操作数据库
  * @export
- * @class AdGetListService
+ * @class AdSqlService
  * @extends BaseService<RequestAccountModel>
  */
-export default class AdGetListService extends BaseService<RequestAccountModel>
+export default class AdSqlService extends BaseService<RequestAccountModel>
 {
     /**
      * 执行具体业务逻辑
@@ -17,8 +17,8 @@ export default class AdGetListService extends BaseService<RequestAccountModel>
      */
     protected async ExecuteMethod(): Promise<void> {
         let { app } = this;
-        
-        let result: any = await app.mysql.select(TableEnum.adAccount);
+
+        let result: any = await app.mysql.query(`select * from ${TableEnum.adAccount} where Id=?`, [this.Parameter.Id]);
 
         this.Result.Data = result;
         this.Result.IsSuccess = true;
