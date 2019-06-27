@@ -6,6 +6,7 @@ import ExportRequestBaseModel from '../../../app/model/requestBaseModel';
 import ExportRequestModel from '../../../app/model/requestModel';
 import ExportResponseMessageModel from '../../../app/model/responseMessageModel';
 import ExportRouterModel from '../../../app/model/routerModel';
+import ExportTableModel from '../../../app/model/tableModel';
 import ExportAccountRequestRequestAccountModel from '../../../app/model/account/request/requestAccountModel';
 import ExportUserRequestRequestUserModel from '../../../app/model/user/request/requestUserModel';
 
@@ -15,6 +16,7 @@ declare module 'egg' {
     RequestModel: ReturnType<typeof ExportRequestModel>;
     ResponseMessageModel: ReturnType<typeof ExportResponseMessageModel>;
     RouterModel: ReturnType<typeof ExportRouterModel>;
+    TableModel: ReturnType<typeof ExportTableModel>;
     Account: {
       Request: {
         RequestAccountModel: ReturnType<typeof ExportAccountRequestRequestAccountModel>;

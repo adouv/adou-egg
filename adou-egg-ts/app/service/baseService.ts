@@ -3,6 +3,7 @@ import { Service } from 'egg';
 import { RequestBaseModel } from '../model/requestBaseModel';
 import { ResponseMessageModel } from '../model/responseMessageModel';
 import { RequestModel } from '../model/requestModel';
+
 /**
  * 服务基类
  * @export
@@ -65,7 +66,7 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @memberof BaseService
      */
     public async Execute(dto: RequestModel): Promise<ResponseMessageModel> {
-        
+
         try {
             this.model = dto;
 
@@ -74,14 +75,16 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
             }
 
             await this.ExecuteMethod();
+
         } catch (error) {
             /** 
              * 异常处理
             */
             this.Result.Data = "";
             this.Result.ErrorCode = "9999";
-            this.Result.Message = error;
+            this.Result.Message = `${error}`;
             this.Result.IsSuccess = false;
+            this.Result.Status = 500;
 
             let stringBuilder: String = `Parameter:${JSON.stringify(this.Parameter)};`;
             stringBuilder += `Exception:${error}`;

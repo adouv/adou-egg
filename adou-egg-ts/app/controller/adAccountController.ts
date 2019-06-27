@@ -13,32 +13,28 @@ export default class AdAccountController extends Controller {
     // @router('api/adAccount/insert', {})
     public async insert(): Promise<void> {
         let { ctx, service } = this;
-        try {
-            let dto: RequestAccountModel = {
-                Title: '我是标题',
-                Account: '我是账号',
-                Password: '我是密码',
-                Email: '我是邮箱',
-                Phone: '我是手机号',
-                Url: '我是链接地址',
-                Descript: '我是描述',
-                Content: '我是内容',
-                UpdateDateTime: new Date().toLocaleString().replace(' PM', '').replace(' AM', '')
-            };
+        let dto: RequestAccountModel = {
+            Title: '我是标题',
+            Account: '我是账号',
+            Password: '我是密码',
+            Email: '我是邮箱',
+            Phone: '我是手机号',
+            Url: '我是链接地址',
+            Descript: '我是描述',
+            Content: '我是内容',
+            UpdateDateTime: new Date().toLocaleString().replace(' PM', '').replace(' AM', '')
+        };
 
-            let model: RequestModel = {
-                UserId: '0',
-                Data: JSON.stringify(dto),
-                EncryptKey: ''
-            };
+        let model: RequestModel = {
+            UserId: '0',
+            Data: JSON.stringify(dto),
+            EncryptKey: ''
+        };
 
-            console.log(JSON.stringify(model));
-            let result: any = await service.account.adInsertService.Execute(model);
-            ctx.logger.info(`insert result:${JSON.stringify(result)}`);
-            ctx.body = `insert result:${JSON.stringify(result)}`;
-        } catch (error) {
-            ctx.logger.error(`page controller error :${error}`);
-        }
+        // console.log(JSON.stringify(model));
+        let result: any = await service.account.adInsertService.Execute(model);
+        ctx.logger.info(`insert result:${JSON.stringify(result)}`);
+        ctx.body = `insert result:${JSON.stringify(result)}`;
     }
     public async delete(): Promise<void> {
         let { ctx, service } = this;
