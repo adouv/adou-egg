@@ -1,7 +1,7 @@
 
 import { Controller } from 'egg';
 import { RequestAccountModel } from '../model/account/request/requestAccountModel';
-// import { router } from '../decorator/router.decorator';
+import { router } from '../decorator/router.decorator';
 import { RequestModel } from '../model/requestModel';
 /**
  * 
@@ -10,7 +10,10 @@ import { RequestModel } from '../model/requestModel';
  * @extends Controller
  */
 export default class AdAccountController extends Controller {
-    // @router('api/adAccount/insert', {})
+
+    tableName: string;
+
+    @router('insert', {})
     public async insert(): Promise<void> {
         let { ctx, service } = this;
         let dto: RequestAccountModel = {

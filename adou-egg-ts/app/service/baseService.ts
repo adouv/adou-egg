@@ -12,6 +12,17 @@ import { RequestModel } from '../model/requestModel';
  * @template P 
  */
 export default class BaseService<P extends RequestBaseModel> extends Service {
+    constructor(ctx) {
+        super(ctx);
+
+        this.Result = {
+            Data: "",
+            IsSuccess: false,
+            ErrorCode: "",
+            Message: "",
+            Status: 200
+        };
+    }
     /**
      * 数据库表集合
      * @protected
@@ -31,13 +42,7 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @type ResponseMessageModel
      * @memberof BaseService
      */
-    protected Result: ResponseMessageModel = {
-        Data: "",
-        IsSuccess: false,
-        ErrorCode: "",
-        Message: "",
-        Status: 200
-    };
+    protected Result: ResponseMessageModel;
     /**
      * 请求实体
      * @type RequestModel

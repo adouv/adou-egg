@@ -9,18 +9,31 @@ export const RouterDto: any = [];
  */
 export function router(router: string, options?: any) {
     console.log('------router region------');
-    let path: string = router;
 
-    console.log('router:', path);
-    console.log('options:', options);
+    console.log(`router:${router},options:${options}`);
 
     return (target: any, methodName: string, _descriptor: PropertyDescriptor) => {
-        let controllerName: string = target;
+        let controllerName: string = String(target.constructor.name).replace('Controller', '').toString();
+
         let actionName: string = methodName;
-        console.log('controllerName:', controllerName);
-        console.log('actionName:', actionName);
-        console.log('target:', target);
-        console.log('methodName:', methodName);
+
+        let routerItem: any = {
+            controller: controllerName,
+            action: actionName,
+            router: router
+        };
+
+        let path: string = `${controllerName}/`
+        if (router) {
+            path += `${router}`;
+        } else {
+            path += `${actionName}`;
+        }
+
+        console.log('path:', path);
+        console.log('routerItem:', JSON.stringify(routerItem));
+        // console.log('target:', target);
+        // console.log('methodName:', methodName);
         console.log('_descriptor:', _descriptor);
 
         console.log('------router endregion------');
