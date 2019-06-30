@@ -16,6 +16,7 @@ export default class AdAccountController extends Controller {
     @router('insert', {})
     public async insert(): Promise<void> {
         let { ctx, service } = this;
+        
         let dto: RequestAccountModel = {
             Title: '我是标题',
             Account: '我是账号',

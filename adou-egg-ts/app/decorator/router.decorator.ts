@@ -1,9 +1,9 @@
-export const RouterDto: any = [];
+export const RouterList: any = [];
 /**
  * 路由修饰器
  * @router(路由,选项)
  * @export
- * @param  {string} [router] 路由地址
+ * @param  {string} [router] 路由地址(如果不填写默认为action名称)
  * @param  {*} [options] 其他选项 譬如：HTTP请求类型... {methods:'POST',...}
  * @return 
  */
@@ -38,4 +38,21 @@ export function router(router: string, options?: any) {
 
         console.log('------router endregion------');
     };
+}
+/**
+ * 路由实体
+ */
+export interface RouterInfoModel {
+    /**
+     * 控制器名称
+     */
+    controller: string;
+    /**
+     * 动作名称
+     */
+    action: string;
+    /**
+     * 路由地址
+     */
+    routerURL: string;
 }
