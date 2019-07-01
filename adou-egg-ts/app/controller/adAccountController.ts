@@ -40,6 +40,7 @@ export default class AdAccountController extends Controller {
         ctx.logger.info(`insert result:${JSON.stringify(result)}`);
         ctx.body = `insert result:${JSON.stringify(result)}`;
     }
+    @router('delete', {})
     public async delete(): Promise<void> {
         let { ctx, service } = this;
         try {
@@ -57,6 +58,7 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
+    @router()
     public async update(): Promise<void> {
         let { ctx, service } = this;
         try {
@@ -87,6 +89,7 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
+    @router('select', {})
     public async select(): Promise<void> {
         let { ctx, service } = this;
         try {

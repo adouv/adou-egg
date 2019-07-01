@@ -1,12 +1,17 @@
 import { Application } from 'egg';
 import { Router } from './model/routerModel';
+// import { RouterModel, RouterInfoModel } from './decorator/router.decorator';
 /** 
  * 
 */
 export default (app: Application) => {
   const { controller, router } = app;
 
+  // let routerList: Array<RouterInfoModel> = new Array<RouterInfoModel>().concat(RouterModel);
 
+  // routerList.forEach(route => {
+  //   router.get();
+  // });
   let routers: Router[] = [
     {
       path: '/',

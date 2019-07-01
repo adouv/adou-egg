@@ -1,4 +1,4 @@
-export const RouterList: any = [];
+export const RouterModel: RouterInfoModel[] = [];
 /**
  * 路由修饰器
  * @router(路由,选项)
@@ -7,31 +7,43 @@ export const RouterList: any = [];
  * @param  {*} [options] 其他选项 譬如：HTTP请求类型... {methods:'POST',...}
  * @return 
  */
-export function router(router: string, options?: any) {
+export function router(router: string = '', options: any = {}) {
+    let AppRouterModel: RouterInfoModel[] = RouterModel;
+
     console.log('------router region------');
 
-    console.log(`router:${router},options:${options}`);
 
     return (target: any, methodName: string, _descriptor: PropertyDescriptor) => {
+
         let controllerName: string = String(target.constructor.name).replace('Controller', '').toString();
 
         let actionName: string = methodName;
 
-        let routerItem: any = {
-            controller: controllerName,
-            action: actionName,
-            router: router
-        };
+        let routerItem: RouterInfoModel;
 
-        let path: string = `${controllerName}/`
-        if (router) {
-            path += `${router}`;
-        } else {
-            path += `${actionName}`;
+        if (router && '' !== router) {
+            routerItem = {
+                controller: target.constructor.name,
+                controllerName: controllerName,
+                action: router,
+                routerURL: `/${controllerName}/${actionName}`,
+                options: options
+            };
+        }
+        else {
+            routerItem = {
+                controller: target.constructor.name,
+                controllerName: controllerName,
+                action: actionName,
+                routerURL: `/${controllerName}/${actionName}`,
+                options: options
+            };
         }
 
-        console.log('path:', path);
+        AppRouterModel.push(routerItem);
+
         console.log('routerItem:', JSON.stringify(routerItem));
+        console.log('routerModel:', JSON.stringify(AppRouterModel));
         // console.log('target:', target);
         // console.log('methodName:', methodName);
         console.log('_descriptor:', _descriptor);
@@ -44,9 +56,13 @@ export function router(router: string, options?: any) {
  */
 export interface RouterInfoModel {
     /**
-     * 控制器名称
+     * 控制器
      */
-    controller: string;
+    controller: any;
+    /**
+     * 控制器名称(不包含后缀)
+     */
+    controllerName: string;
     /**
      * 动作名称
      */
@@ -55,4 +71,8 @@ export interface RouterInfoModel {
      * 路由地址
      */
     routerURL: string;
+    /**
+     * 配置项
+     */
+    options: any;
 }
