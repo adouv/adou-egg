@@ -1,6 +1,12 @@
 ## Quick View
 
 ```ts
+/**
+ * 控制器
+ * @export
+ * @class AdAccountController
+ * @extends Controller
+ */
 @scope('adAccount');
 export default class AdAccountController extends Controller {
     @router('insert', {name:'插入数据',methods:'POST'})
