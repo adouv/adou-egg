@@ -4,10 +4,10 @@ export const RouterModel: RouterInfoModel[] = [];
  * @router(路由,选项)
  * @export
  * @param  {string} [router] 路由地址(如果不填写默认为action名称)
- * @param  {*} [options] 其他选项 譬如：HTTP请求类型... {methods:'POST',...}
+ * @param  {options} [options] 其他选项 譬如：HTTP请求类型... {methods:'POST',name:'...',...}
  * @return 
  */
-export function router(router: string = '', options: any = {}) {
+export function router(router: string = '', options: options = {}) {
     let AppRouterModel: RouterInfoModel[] = RouterModel;
 
     console.log('------router region------');
@@ -58,21 +58,50 @@ export interface RouterInfoModel {
     /**
      * 控制器
      */
-    controller: any;
+    controller?: any;
     /**
      * 控制器名称(不包含后缀)
      */
-    controllerName: string;
+    controllerName?: string;
     /**
      * 动作名称
      */
-    action: string;
+    action?: string;
     /**
      * 路由地址
      */
-    routerURL: string;
+    routerURL?: string;
     /**
      * 配置项
      */
-    options: any;
+    options?: options;
+}
+/**
+ * 路由配置
+ */
+export interface options {
+    /**
+     * 路由名称
+     */
+    method?: string;
+    /**
+     * 方法
+     */
+    name?: string;
+    /**
+     * 路径
+     */
+    url?: string;
+    /**
+     * 描述
+     */
+    description?: string;
+    /**
+     * 中间件
+     */
+    middleware?: string;
+    /**
+     * 路由扩展信息
+     */
+    extInfo?: string;
 }
