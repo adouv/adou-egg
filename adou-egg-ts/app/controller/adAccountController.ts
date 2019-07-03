@@ -1,14 +1,18 @@
 
 import { Controller } from 'egg';
 import { RequestAccountModel } from '../model/account/request/requestAccountModel';
+import { prefix } from '../decorator/prefix.decorator';
 import { router } from '../decorator/router.decorator';
 import { RequestModel } from '../model/requestModel';
+
+
 /**
- * 
+ * 账户信息api
  * @export
  * @class AdAccountController
- * @extends Controller
+ * @extends {Controller}
  */
+@prefix('api/adAccount')
 export default class AdAccountController extends Controller {
 
     tableName: string;
@@ -16,7 +20,7 @@ export default class AdAccountController extends Controller {
     @router('insert', {})
     public async insert(): Promise<void> {
         let { ctx, service } = this;
-        
+
         let dto: RequestAccountModel = {
             Title: '我是标题',
             Account: '我是账号',

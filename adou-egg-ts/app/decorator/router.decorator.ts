@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 export const RouterModel: RouterInfoModel[] = [];
 /**
  * 路由修饰器
@@ -15,35 +16,39 @@ export function router(router: string = '', options: options = {}) {
 
     return (target: any, methodName: string, _descriptor: PropertyDescriptor) => {
 
+        console.log('target:',target.constructor.prototype);
         let controllerName: string = String(target.constructor.name).replace('Controller', '').toString();
 
         let actionName: string = methodName;
 
-        let routerItem: RouterInfoModel;
+        const ConfigRoute = (prefix: string) => {
+            console.log(prefix);
+            let routerItem: RouterInfoModel;
+            if (router && '' !== router) {
+                routerItem = {
+                    controller: target.constructor.name,
+                    controllerName: controllerName,
+                    action: router,
+                    routerURL: `/${controllerName}/${actionName}`,
+                    options: options
+                };
+            }
+            else {
+                routerItem = {
+                    controller: target.constructor.name,
+                    controllerName: controllerName,
+                    action: actionName,
+                    routerURL: `/${controllerName}/${actionName}`,
+                    options: options
+                };
+            }
+            AppRouterModel.push(routerItem);
+            console.log('routerModel:', JSON.stringify(AppRouterModel));
+        };
 
-        if (router && '' !== router) {
-            routerItem = {
-                controller: target.constructor.name,
-                controllerName: controllerName,
-                action: router,
-                routerURL: `/${controllerName}/${actionName}`,
-                options: options
-            };
-        }
-        else {
-            routerItem = {
-                controller: target.constructor.name,
-                controllerName: controllerName,
-                action: actionName,
-                routerURL: `/${controllerName}/${actionName}`,
-                options: options
-            };
-        }
+        Reflect.defineMetadata('ConfigRoute', ConfigRoute, target.constructor.prototype, actionName);
+        // let cof:any=Reflect.getMetadata();
 
-        AppRouterModel.push(routerItem);
-
-        console.log('routerItem:', JSON.stringify(routerItem));
-        console.log('routerModel:', JSON.stringify(AppRouterModel));
         // console.log('target:', target);
         // console.log('methodName:', methodName);
         console.log('_descriptor:', _descriptor);
@@ -104,4 +109,15 @@ export interface options {
      * 路由扩展信息
      */
     extInfo?: string;
+}
+/**
+ * 路由类型
+ */
+export enum Methods {
+    POST = 'POST',
+    GET = 'GET',
+    PATCH = 'PATCH',
+    DEL = 'DEL',
+    OPTIONS = 'OPTIONS',
+    PUT = 'PUT'
 }
