@@ -5,7 +5,6 @@ import { prefix } from '../decorator/prefix.decorator';
 import { router } from '../decorator/router.decorator';
 import { RequestModel } from '../model/requestModel';
 
-
 /**
  * 账户信息api
  * @export
@@ -17,7 +16,7 @@ export default class AdAccountController extends Controller {
 
     tableName: string;
 
-    @router('insert', {})
+    @router('insert')
     public async insert(): Promise<void> {
         let { ctx, service } = this;
 
@@ -44,7 +43,7 @@ export default class AdAccountController extends Controller {
         ctx.logger.info(`insert result:${JSON.stringify(result)}`);
         ctx.body = `insert result:${JSON.stringify(result)}`;
     }
-    @router('delete', {})
+    @router('delete')
     public async delete(): Promise<void> {
         let { ctx, service } = this;
         try {
@@ -93,7 +92,7 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
-    @router('select', {})
+    @router('select')
     public async select(): Promise<void> {
         let { ctx, service } = this;
         try {

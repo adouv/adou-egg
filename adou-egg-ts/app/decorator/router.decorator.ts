@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-export const RouterModel: RouterInfoModel[] = [];
+export const RouterList: RouterInfoModel[] = [];
 /**
  * 路由修饰器
  * @router(路由,选项)
@@ -8,52 +8,53 @@ export const RouterModel: RouterInfoModel[] = [];
  * @param  {options} [options] 其他选项 譬如：HTTP请求类型... {methods:'POST',name:'...',...}
  * @return 
  */
-export function router(router: string = '', options: options = {}) {
-    let AppRouterModel: RouterInfoModel[] = RouterModel;
-
-    console.log('------router region------');
-
+export function router(router: string = '', options: options = { method: Methods.POST }) {
+    let appRouterList = RouterList;
 
     return (target: any, methodName: string, _descriptor: PropertyDescriptor) => {
 
-        console.log('target:',target.constructor.prototype);
+        // console.log('target:', target.constructor);
         let controllerName: string = String(target.constructor.name).replace('Controller', '').toString();
 
         let actionName: string = methodName;
 
         const ConfigRoute = (prefix: string) => {
-            console.log(prefix);
+
             let routerItem: RouterInfoModel;
+
             if (router && '' !== router) {
                 routerItem = {
                     controller: target.constructor.name,
                     controllerName: controllerName,
-                    action: router,
+                    action: methodName,
                     routerURL: `/${controllerName}/${actionName}`,
-                    options: options
+                    options: options,
+                    prefix: prefix
                 };
             }
             else {
                 routerItem = {
                     controller: target.constructor.name,
                     controllerName: controllerName,
-                    action: actionName,
+                    action: methodName,
                     routerURL: `/${controllerName}/${actionName}`,
-                    options: options
+                    options: options,
+                    prefix: prefix
                 };
             }
-            AppRouterModel.push(routerItem);
-            console.log('routerModel:', JSON.stringify(AppRouterModel));
-        };
 
-        Reflect.defineMetadata('ConfigRoute', ConfigRoute, target.constructor.prototype, actionName);
-        // let cof:any=Reflect.getMetadata();
+            appRouterList.push(routerItem);
+        }
 
-        // console.log('target:', target);
-        // console.log('methodName:', methodName);
-        console.log('_descriptor:', _descriptor);
+        console.log('conf:', Reflect.getMetadata('configRoute', target.constructor.prototype, methodName));
 
-        console.log('------router endregion------');
+        Reflect.defineMetadata('configRoute', ConfigRoute, target.constructor.prototype, methodName);
+
+        // Reflect.defineMetadata('PATH_METADATA', routerItem,_descriptor.value);
+
+        // console.log('_descriptor:', _descriptor);
+
+        // console.log('------router endregion------');
     };
 }
 /**
@@ -67,7 +68,7 @@ export interface RouterInfoModel {
     /**
      * 控制器名称(不包含后缀)
      */
-    controllerName?: string;
+    controllerName: string;
     /**
      * 动作名称
      */
@@ -80,6 +81,7 @@ export interface RouterInfoModel {
      * 配置项
      */
     options?: options;
+    prefix: any;
 }
 /**
  * 路由配置
@@ -114,10 +116,12 @@ export interface options {
  * 路由类型
  */
 export enum Methods {
-    POST = 'POST',
+    ALL = 'ALL',
     GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE',
     PATCH = 'PATCH',
-    DEL = 'DEL',
     OPTIONS = 'OPTIONS',
-    PUT = 'PUT'
+    HEAD = 'HEAD'
 }

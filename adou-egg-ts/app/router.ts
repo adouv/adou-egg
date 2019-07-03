@@ -10,8 +10,10 @@ export default (app: Application) => {
   // let routerList: Array<RouterInfoModel> = new Array<RouterInfoModel>().concat(RouterModel);
 
   // routerList.forEach(route => {
-  //   let contr: any = Reflect.get(Reflect.get(Reflect.get(controller, route.controller), route.controller), route.action);
-  //   console.log(contr);
+  //   console.log('p:',Reflect.get(controller,route.prefix));
+  //   console.log('c:',Reflect.get(controller,route.controller));
+  //   // let contr: any = Reflect.get(Reflect.get(Reflect.get(controller, route.controller), route.controller), route.action);
+  //   // console.log(contr);
   //   //router.get(route.routerURL,contr);
   // });
   let routers: Router[] = [
