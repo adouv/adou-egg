@@ -1,5 +1,5 @@
 import { Application } from 'egg';
-import { RouterList, RouterInfoModel } from './decorator/router.decorator';
+import { RouterList, RouterInfoModel, Methods } from './decorator/router.decorator';
 /** 
  * 路由配置
 */
@@ -9,19 +9,22 @@ export default (app: Application) => {
 
   let routerList: Array<RouterInfoModel> = new Array<RouterInfoModel>().concat(RouterList);
 
-  console.log(JSON.stringify(routerList));
-
   routerList.forEach(route => {
-    
-    let _controller: any = Reflect.get(Reflect.get(controller, route.controller), route.action);
-    
-    // let method: any = Reflect.getMetadata('method', route._controller[route.action]) as Methods;
 
-    // console.log(router[method](route.routerURL, _controller));
+    let _controller: any = Reflect.get(Reflect.get(controller, route.controller), route.action);
+    /**
+     * router.head - HEAD
+     * router.options - OPTIONS
+     * router.get - GET
+     * router.put - PUT
+     * router.post - POST
+     * router.patch - PATCH
+     * router.delete - DELETE
+     */
+    let _method: any = route.options.method as Methods;
+    
     //路由注册
-    router.all(route.routerURL, _controller);
+    router[_method](route.routerURL, _controller);
   });
 
 };
-
-

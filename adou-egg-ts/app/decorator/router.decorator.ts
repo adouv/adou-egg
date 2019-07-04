@@ -8,7 +8,7 @@ export const RouterList: RouterInfoModel[] = [];
  * @param  {options} [options] 配置项
  * @return 
  */
-export function router(router: string = '', options: options = { method: Methods.POST }) {
+export function router(router: string = '', options: options = { method: Methods.GET }) {
 
     let AppRouterList: RouterInfoModel[] = RouterList;
 
@@ -86,11 +86,7 @@ export interface options {
     /**
      * 请求类型
      */
-    method: string;
-    /**
-     * 路由类型
-     */
-    routerMethod?: any;
+    method?: string;
     /**
      * 方法
      */
