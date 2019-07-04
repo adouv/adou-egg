@@ -12,7 +12,14 @@ export default (app: Application) => {
   console.log(JSON.stringify(routerList));
 
   routerList.forEach(route => {
-    router.all(route.routerURL, Reflect.get(Reflect.get(controller, route.controller), route.action));
+    
+    let _controller: any = Reflect.get(Reflect.get(controller, route.controller), route.action);
+    
+    // let method: any = Reflect.getMetadata('method', route._controller[route.action]) as Methods;
+
+    // console.log(router[method](route.routerURL, _controller));
+    //路由注册
+    router.all(route.routerURL, _controller);
   });
 
 };

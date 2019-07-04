@@ -5,6 +5,7 @@ import 'reflect-metadata';
  */
 export function prefix(prefix: string = "") {
     return (target: Function) => {
+
         Reflect.defineMetadata('prefix', prefix, target.prototype);
 
         Object.getOwnPropertyNames(target.prototype).forEach(param => {

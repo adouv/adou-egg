@@ -22,6 +22,7 @@ export function router(router: string = '', options: options = { method: Methods
 
             if (router && '' !== router) {
                 routerItem = {
+                    _controller: target,
                     controller: CharService.toSmallHumo(target.constructor.name),
                     controllerName: controllerName,
                     action: methodName,
@@ -32,6 +33,7 @@ export function router(router: string = '', options: options = { method: Methods
             }
             else {
                 routerItem = {
+                    _controller: target,
                     controller: CharService.toSmallHumo(target.constructor.name),
                     controllerName: controllerName,
                     action: methodName,
@@ -51,6 +53,7 @@ export function router(router: string = '', options: options = { method: Methods
  * 路由实体
  */
 export interface RouterInfoModel {
+    _controller: any;
     /**
      * 控制器
      */
@@ -81,9 +84,13 @@ export interface RouterInfoModel {
  */
 export interface options {
     /**
-     * 路由名称
+     * 请求类型
      */
-    method?: string;
+    method: string;
+    /**
+     * 路由类型
+     */
+    routerMethod?: any;
     /**
      * 方法
      */
@@ -109,14 +116,14 @@ export interface options {
  * 路由类型
  */
 export enum Methods {
-    ALL = 'ALL',
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    DELETE = 'DELETE',
-    PATCH = 'PATCH',
-    OPTIONS = 'OPTIONS',
-    HEAD = 'HEAD'
+    ALL = 'all',
+    GET = 'get',
+    POST = 'post',
+    PUT = 'put',
+    DELETE = 'delete',
+    PATCH = 'patch',
+    OPTIONS = 'options',
+    HEAD = 'head'
 }
 
 class CharService {
