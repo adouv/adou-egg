@@ -11,11 +11,8 @@ import { RequestModel } from '../model/requestModel';
  * @class AdAccountController
  * @extends {Controller}
  */
-@prefix('api/adAccount')
+@prefix()
 export default class AdAccountController extends Controller {
-
-    tableName: string;
-
     @router('insert')
     public async insert(): Promise<void> {
         let { ctx, service } = this;

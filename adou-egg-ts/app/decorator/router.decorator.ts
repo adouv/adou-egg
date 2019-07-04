@@ -5,56 +5,46 @@ export const RouterList: RouterInfoModel[] = [];
  * @router(路由,选项)
  * @export
  * @param  {string} [router] 路由地址(如果不填写默认为action名称)
- * @param  {options} [options] 其他选项 譬如：HTTP请求类型... {methods:'POST',name:'...',...}
+ * @param  {options} [options] 配置项
  * @return 
  */
 export function router(router: string = '', options: options = { method: Methods.POST }) {
-    let appRouterList = RouterList;
+
+    let AppRouterList: RouterInfoModel[] = RouterList;
 
     return (target: any, methodName: string, _descriptor: PropertyDescriptor) => {
 
-        // console.log('target:', target.constructor);
-        let controllerName: string = String(target.constructor.name).replace('Controller', '').toString();
+        let controllerName: string = CharService.toSmallHumo(String(target.constructor.name).replace('Controller', '').toString());
 
-        let actionName: string = methodName;
-
-        const ConfigRoute = (prefix: string) => {
+        const configRoute = (prefix: string) => {
 
             let routerItem: RouterInfoModel;
 
             if (router && '' !== router) {
                 routerItem = {
-                    controller: target.constructor.name,
+                    controller: CharService.toSmallHumo(target.constructor.name),
                     controllerName: controllerName,
                     action: methodName,
-                    routerURL: `/${controllerName}/${actionName}`,
+                    routerURL: `/${controllerName}/${methodName}`,
                     options: options,
                     prefix: prefix
                 };
             }
             else {
                 routerItem = {
-                    controller: target.constructor.name,
+                    controller: CharService.toSmallHumo(target.constructor.name),
                     controllerName: controllerName,
                     action: methodName,
-                    routerURL: `/${controllerName}/${actionName}`,
+                    routerURL: prefix !== '' ? `/${prefix}/${methodName}` : `/${controllerName}/${methodName}`,
                     options: options,
                     prefix: prefix
                 };
             }
 
-            appRouterList.push(routerItem);
+            AppRouterList.push(routerItem);
         }
 
-        console.log('conf:', Reflect.getMetadata('configRoute', target.constructor.prototype, methodName));
-
-        Reflect.defineMetadata('configRoute', ConfigRoute, target.constructor.prototype, methodName);
-
-        // Reflect.defineMetadata('PATH_METADATA', routerItem,_descriptor.value);
-
-        // console.log('_descriptor:', _descriptor);
-
-        // console.log('------router endregion------');
+        Reflect.defineMetadata('configRoute', configRoute, target.constructor.prototype, methodName);
     };
 }
 /**
@@ -64,7 +54,7 @@ export interface RouterInfoModel {
     /**
      * 控制器
      */
-    controller?: any;
+    controller: string;
     /**
      * 控制器名称(不包含后缀)
      */
@@ -72,16 +62,19 @@ export interface RouterInfoModel {
     /**
      * 动作名称
      */
-    action?: string;
+    action: string;
     /**
      * 路由地址
      */
-    routerURL?: string;
+    routerURL: string;
     /**
      * 配置项
      */
-    options?: options;
-    prefix: any;
+    options: options;
+    /**
+     * 域名
+     */
+    prefix: string;
 }
 /**
  * 路由配置
@@ -124,4 +117,17 @@ export enum Methods {
     PATCH = 'PATCH',
     OPTIONS = 'OPTIONS',
     HEAD = 'HEAD'
+}
+
+class CharService {
+    /**
+     * 将类名称转换为小驼峰命名法
+     * @static
+     * @param  {any} obj 
+     * @return string 
+     * @memberof CharService
+     */
+    public static toSmallHumo(obj): string {
+        return `${String(obj.substring(0, 1)).toLocaleLowerCase()}${String(obj.substring(1, obj.length))}`;
+    }
 }
