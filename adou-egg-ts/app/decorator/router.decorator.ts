@@ -26,7 +26,7 @@ export function router(router: string = '', options: options = { method: Methods
                     controller: CharService.toSmallHumo(target.constructor.name),
                     controllerName: controllerName,
                     action: methodName,
-                    routerURL: `/${controllerName}/${methodName}`,
+                    routerURL: `/${controllerName}/${router}`,
                     options: options,
                     prefix: prefix
                 };

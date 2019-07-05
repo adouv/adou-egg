@@ -2,7 +2,7 @@
 import { Controller } from 'egg';
 import { RequestAccountModel } from '../model/account/request/requestAccountModel';
 import { prefix } from '../decorator/prefix.decorator';
-import { router } from '../decorator/router.decorator';
+import { router, Methods } from '../decorator/router.decorator';
 import { RequestModel } from '../model/requestModel';
 
 /**
@@ -13,7 +13,12 @@ import { RequestModel } from '../model/requestModel';
  */
 @prefix()
 export default class AdAccountController extends Controller {
-    @router('insert')
+    @router('test', { method: Methods.POST })
+    public async test():Promise<void>{
+        let { ctx } = this;
+        ctx.body="test";
+    }
+    @router('insert', { method: Methods.POST })
     public async insert(): Promise<void> {
         let { ctx, service } = this;
 
