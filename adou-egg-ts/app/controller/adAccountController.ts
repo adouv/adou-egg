@@ -13,12 +13,24 @@ import { RequestModel } from '../model/requestModel';
  */
 @prefix()
 export default class AdAccountController extends Controller {
-    @router('test', { method: Methods.POST })
-    public async test():Promise<void>{
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
+    @router('test', { method: Methods.GET })
+    public async test(): Promise<void> {
         let { ctx } = this;
-        ctx.body="test";
+        ctx.body = "test";
     }
-    @router('insert', { method: Methods.POST })
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
+    @router('insert', { method: Methods.GET })
     public async insert(): Promise<void> {
         let { ctx, service } = this;
 
@@ -45,6 +57,12 @@ export default class AdAccountController extends Controller {
         ctx.logger.info(`insert result:${JSON.stringify(result)}`);
         ctx.body = `insert result:${JSON.stringify(result)}`;
     }
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
     @router('delete')
     public async delete(): Promise<void> {
         let { ctx, service } = this;
@@ -63,6 +81,12 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
     @router()
     public async update(): Promise<void> {
         let { ctx, service } = this;
@@ -94,7 +118,13 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
-    @router('select')
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
+    @router('select', { method: Methods.GET })
     public async select(): Promise<void> {
         let { ctx, service } = this;
         try {
@@ -111,6 +141,12 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
     public async get(): Promise<void> {
         let { ctx, service } = this;
         try {
@@ -127,7 +163,12 @@ export default class AdAccountController extends Controller {
             ctx.logger.error(`page controller error :${error}`);
         }
     }
-
+    /**
+     *
+     *
+     * @returns {Promise<void>}
+     * @memberof AdAccountController
+     */
     public async query(): Promise<void> {
         let { ctx, service } = this;
         try {
