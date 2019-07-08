@@ -62,7 +62,6 @@ export default class BaseService<P extends RequestBaseModel> extends Service {
      * @memberof BaseService
      */
     protected async Validate(): Promise<void> {
-        console.log('base model:', this.model.Data);
         if ('' !== this.model.Data && undefined !== this.model.Data) {
             this.Parameter = JSON.parse(this.model.Data);
         }
