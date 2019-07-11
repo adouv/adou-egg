@@ -23,6 +23,7 @@ export default class AdDeleteService extends BaseService<RequestAccountModel>
         };
 
         let result: any = await app.mysql.delete(tableEnum.adAccount, where);
+        
         this.Result.Data = result;
         this.Result.IsSuccess = true;
         this.Result.ErrorCode = "200";
