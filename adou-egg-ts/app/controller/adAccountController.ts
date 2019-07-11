@@ -22,6 +22,7 @@ export default class AdAccountController extends Controller {
     @router('test', { method: Methods.GET })
     public async test(): Promise<void> {
         let { ctx } = this;
+
         ctx.body = "test";
     }
     /**
