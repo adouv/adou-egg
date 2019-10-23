@@ -1,4 +1,5 @@
 import BaseService from '../baseService';
+import { CommunityModel } from './../../dto/kjl/communityModel';
 import { RequestCommunityModel } from '../../model/community/request/requestCommunityModel';
 import { tableEnum } from '../../enum/table.enum'
 
@@ -16,11 +17,13 @@ export default class AdGetListByNameService extends BaseService<RequestCommunity
     protected async ExecuteMethod(): Promise<void> {
         let { app } = this;
 
-        let where: RequestCommunityModel = {
-            name: this.Parameter.name
-        };
+        let model: CommunityModel = {} as CommunityModel;
 
-        let result: any = await app.mysql.select(tableEnum.adCommunity, { where: where });
+        if (this.Parameter.name) {
+            model.name = this.Parameter.name;
+        }
+
+        let result: any = await app.mysql.select(tableEnum.adCommunity, { where: model });
 
         this.Result.Data = result;
         this.Result.IsSuccess = true;

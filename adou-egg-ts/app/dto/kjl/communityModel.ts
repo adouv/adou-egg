@@ -1,8 +1,11 @@
-import { RequestBaseModel } from '../../requestBaseModel';
 /**
- * 酷家乐数据请求实体
+ * 
  */
-export interface RequestCommunityModel extends RequestBaseModel {
+export interface CommunityModel  {
+    /**
+     * 编号 自增 主键
+     */
+    id?: Number;
     /**
      * 名称
      */

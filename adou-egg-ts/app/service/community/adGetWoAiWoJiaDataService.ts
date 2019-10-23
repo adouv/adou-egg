@@ -1,6 +1,5 @@
 import { RequestCommunityModel } from './../../model/community/request/requestCommunityModel';
 import BaseService from '../baseService';
-import { tableEnum } from '../../enum/table.enum'
 /**
  * 抓取我爱我家数据服务
  * @export
@@ -16,9 +15,13 @@ export default class AdGetWoAiWoJiaDataService extends BaseService<RequestCommun
      * @memberof AdGetWoAiWoJiaDataService
      */
     protected async ExecuteMethod(): Promise<void> {
-        let { app } = this;
+        let { ctx } = this;
 
-        let result: any = await app.mysql.select(tableEnum.adCommunity);
+        let wawjURL: string = "https://bj.5i5j.com/ershoufang/chaoyangqu/?wscckey=08e8cd4d6787c78b_1571823617";
+
+        let result: any = await ctx.curl(wawjURL, {
+            dataType: 'json'
+        });
 
         this.Result.Data = result;
         this.Result.IsSuccess = true;
