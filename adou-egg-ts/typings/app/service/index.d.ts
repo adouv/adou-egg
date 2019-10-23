@@ -9,6 +9,9 @@ import ExportAccountAdGetListService from '../../../app/service/account/adGetLis
 import ExportAccountAdInsertService from '../../../app/service/account/adInsertService';
 import ExportAccountAdSqlService from '../../../app/service/account/adSqlService';
 import ExportAccountAdUpdateService from '../../../app/service/account/adUpdateService';
+import ExportCommunityAdGetListByNameService from '../../../app/service/community/adGetListByNameService';
+import ExportCommunityAdGetWoAiWoJiaDataService from '../../../app/service/community/adGetWoAiWoJiaDataService';
+import ExportCommunityAdInsertCommunityService from '../../../app/service/community/adInsertCommunityService';
 import ExportUserAdUserService from '../../../app/service/user/adUserService';
 
 declare module 'egg' {
@@ -21,6 +24,11 @@ declare module 'egg' {
       adInsertService: ExportAccountAdInsertService;
       adSqlService: ExportAccountAdSqlService;
       adUpdateService: ExportAccountAdUpdateService;
+    }
+    community: {
+      adGetListByNameService: ExportCommunityAdGetListByNameService;
+      adGetWoAiWoJiaDataService: ExportCommunityAdGetWoAiWoJiaDataService;
+      adInsertCommunityService: ExportCommunityAdInsertCommunityService;
     }
     user: {
       adUserService: ExportUserAdUserService;

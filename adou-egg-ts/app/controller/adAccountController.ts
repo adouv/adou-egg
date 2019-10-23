@@ -33,7 +33,7 @@ export default class AdAccountController extends Controller {
      */
     @router('insert', { method: Methods.GET })
     public async insert(): Promise<void> {
-        let { ctx, service } = this;
+        // let { ctx, service } = this;
 
         let dto: RequestAccountModel = {
             Title: '我是标题',
@@ -53,10 +53,10 @@ export default class AdAccountController extends Controller {
             EncryptKey: ''
         };
 
-        // console.log(JSON.stringify(model));
-        let result: any = await service.account.adInsertService.Execute(model);
-        ctx.logger.info(`insert result:${JSON.stringify(result)}`);
-        ctx.body = `insert result:${JSON.stringify(result)}`;
+        console.log(JSON.stringify(model));
+        // let result: any = await service.account.adInsertService.Execute(model);
+        // ctx.logger.info(`insert result:${JSON.stringify(result)}`);
+        // ctx.body = `insert result:${JSON.stringify(result)}`;
     }
     /**
      *
@@ -66,7 +66,7 @@ export default class AdAccountController extends Controller {
      */
     @router('delete')
     public async delete(): Promise<void> {
-        let { ctx, service } = this;
+        // let { ctx, service } = this;
         try {
 
             let model: RequestModel = {
@@ -75,11 +75,12 @@ export default class AdAccountController extends Controller {
                 EncryptKey: ''
             };
 
-            let result: any = await service.account.adDeleteService.Execute(model);
-            ctx.logger.info(`delete result:${JSON.stringify(result)}`);
-            ctx.body = `delete result:${JSON.stringify(result)}`;
+            console.log(model);
+            // let result: any = await service.account.adDeleteService.Execute(model);
+            // ctx.logger.info(`delete result:${JSON.stringify(result)}`);
+            // ctx.body = `delete result:${JSON.stringify(result)}`;
         } catch (error) {
-            ctx.logger.error(`page controller error :${error}`);
+            // ctx.logger.error(`page controller error :${error}`);
         }
     }
     /**
@@ -90,7 +91,7 @@ export default class AdAccountController extends Controller {
      */
     @router()
     public async update(): Promise<void> {
-        let { ctx, service } = this;
+        // let { ctx, service } = this;
         try {
             let dto: RequestAccountModel = {
                 Id: 2,
@@ -111,12 +112,13 @@ export default class AdAccountController extends Controller {
                 EncryptKey: ''
             };
 
-            ctx.logger.info(`dto:${JSON.stringify(dto)}`);
-            let result: any = await service.account.adUpdateService.Execute(model);
-            ctx.logger.info(`update result:${JSON.stringify(result)}`);
-            ctx.body = `delete update:${JSON.stringify(result)}`;
+            console.log(model);
+            // ctx.logger.info(`dto:${JSON.stringify(model)}`);
+            // let result: any = await service.account.adUpdateService.Execute(model);
+            // ctx.logger.info(`update result:${JSON.stringify(result)}`);
+            // ctx.body = `delete update:${JSON.stringify(result)}`;
         } catch (error) {
-            ctx.logger.error(`page controller error :${error}`);
+            // ctx.logger.error(`page controller error :${error}`);
         }
     }
     /**
@@ -127,7 +129,7 @@ export default class AdAccountController extends Controller {
      */
     @router('select', { method: Methods.GET })
     public async select(): Promise<void> {
-        let { ctx, service } = this;
+        // let { ctx, service } = this;
         try {
             let model: RequestModel = {
                 UserId: '0',
@@ -135,11 +137,13 @@ export default class AdAccountController extends Controller {
                 EncryptKey: ''
             };
 
-            let result: any = await service.account.adGetListService.Execute(model);
-            ctx.logger.info(`select result:${JSON.stringify(result)}`);
-            ctx.body = `delete select:${JSON.stringify(result)}`;
+            console.log(model);
+
+            // let result: any = await service.account.adGetListService.Execute(model);
+            // ctx.logger.info(`select result:${JSON.stringify(result)}`);
+            // ctx.body = `delete select:${JSON.stringify(result)}`;
         } catch (error) {
-            ctx.logger.error(`page controller error :${error}`);
+            // ctx.logger.error(`page controller error :${error}`);
         }
     }
     /**
@@ -149,7 +153,7 @@ export default class AdAccountController extends Controller {
      * @memberof AdAccountController
      */
     public async get(): Promise<void> {
-        let { ctx, service } = this;
+        // let { ctx, service } = this;
         try {
             let model: RequestModel = {
                 UserId: '0',
@@ -157,11 +161,13 @@ export default class AdAccountController extends Controller {
                 EncryptKey: ''
             };
 
-            let result: any = await service.account.adFindService.Execute(model);
-            ctx.logger.info(`get result:${JSON.stringify(result)}`);
-            ctx.body = `get result:${JSON.stringify(result)}`;
+            console.log(model);
+
+            // let result: any = await service.account.adFindService.Execute(model);
+            // ctx.logger.info(`get result:${JSON.stringify(result)}`);
+            // ctx.body = `get result:${JSON.stringify(result)}`;
         } catch (error) {
-            ctx.logger.error(`page controller error :${error}`);
+            // ctx.logger.error(`page controller error :${error}`);
         }
     }
     /**
@@ -171,7 +177,7 @@ export default class AdAccountController extends Controller {
      * @memberof AdAccountController
      */
     public async query(): Promise<void> {
-        let { ctx, service } = this;
+        // let { ctx, service } = this;
         try {
             let model: RequestModel = {
                 UserId: '0',
@@ -179,11 +185,13 @@ export default class AdAccountController extends Controller {
                 EncryptKey: ''
             };
 
-            let result: any = await service.account.adSqlService.Execute(model);
-            ctx.logger.info(`query result:${JSON.stringify(result)}`);
-            ctx.body = `query result:${JSON.stringify(result)} `;
+            console.log(model);
+
+            // let result: any = await service.account.adSqlService.Execute(model);
+            // ctx.logger.info(`query result:${JSON.stringify(result)}`);
+            // ctx.body = `query result:${JSON.stringify(result)} `;
         } catch (error) {
-            ctx.logger.error(`page controller error :${error}`);
+            // ctx.logger.error(`page controller error :${error}`);
         }
     }
 }
